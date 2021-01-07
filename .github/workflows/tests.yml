@@ -1,0 +1,23 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - name: Configure
+      run: cmake -Bbuild -T host=x64 -A x64
+
+    - name: Build
+      run: cmake --build build --config Debug -j4
+
+    - name: Run tests
+      shell: cmd
+      run: call "build\Debug\TestGL.exe"
