@@ -21,7 +21,7 @@ static const Vertex vertices[3] =
 };
 
 static const char* vertex_shader_text =
-"#version 330\n"
+"#version 440\n"
 "uniform mat4 MVP;\n"
 "in vec3 vCol;\n"
 "in vec2 vPos;\n"
@@ -33,7 +33,7 @@ static const char* vertex_shader_text =
 "}\n";
 
 static const char* fragment_shader_text =
-"#version 330\n"
+"#version 440\n"
 "in vec3 color;\n"
 "out vec4 fragment;\n"
 "void main()\n"
@@ -59,8 +59,8 @@ int main(void)
     if (!glfwInit())
         exit(EXIT_FAILURE);
 
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     GLFWwindow* window = glfwCreateWindow(640, 480, "OpenGL Triangle", NULL, NULL);
@@ -110,7 +110,8 @@ int main(void)
     glVertexAttribPointer(vcol_location, 3, GL_FLOAT, GL_FALSE,
                           sizeof(Vertex), (void*) offsetof(Vertex, col));
 
-    while (!glfwWindowShouldClose(window))
+    int ff = 0;
+    while (!glfwWindowShouldClose(window) && ff++ < 100)
     {
         int width, height;
         glfwGetFramebufferSize(window, &width, &height);

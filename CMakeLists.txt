@@ -15,7 +15,7 @@ add_executable(
 
 target_link_libraries(
     TestGL
-    opengl32.lib
+    # ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/mesa-build/lib-vc2019/opengl32.lib
     ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/glfw/lib-vc2019/glfw3.lib
 )
 
